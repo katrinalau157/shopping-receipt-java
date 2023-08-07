@@ -2,26 +2,18 @@ import data.ItemData;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 
 public class Item
 {
-	private static final Set<String> CLOTHING_ITEM_CATEGORY = new HashSet<>();
-	static
-	{
-		CLOTHING_ITEM_CATEGORY.add("shirt");
-		CLOTHING_ITEM_CATEGORY.add("dress");
-		CLOTHING_ITEM_CATEGORY.add("cloth");
-	}
+	private static final Set<String> CLOTHING_ITEM_CATEGORY = Stream.of("shirt", "shirts", "pants", "pant", "shorts", "short",
+			"dress", "dresses", "hat", "hats", "sock", "socks", "shoe", "shoes").collect(Collectors.toCollection(HashSet::new));
 
-	private static final Set<String> FOOD_ITEM_CATEGORY = new HashSet<>();
-	static
-	{
-		FOOD_ITEM_CATEGORY.add("potato chips");
-		FOOD_ITEM_CATEGORY.add("potato");
-		FOOD_ITEM_CATEGORY.add("chips");
-		FOOD_ITEM_CATEGORY.add("apple");
-	}
+	private static final Set<String> FOOD_ITEM_CATEGORY = Stream.of("potato chips", "potato chip", "chips", "chip", "potato",
+					"apple", "banana", "orange", "lemon", "peach", "watermelon", "melon", "grape", "grapes")
+			.collect(Collectors.toCollection(HashSet::new));
 
 	public static ItemData createItemDataByString(String inputString)
 	{

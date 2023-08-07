@@ -22,21 +22,14 @@ public class ShoppingReceipt
 
 			//split input string by comma and space
 			String[] splitInput = input.split("(,\\s)|(,)");
-			String location = "";
 
 			//create list of itemData using user input
 			List<ItemData> itemDataList = new ArrayList<>();
-			for (int i = 0; i < splitInput.length; i++)
+			String location = getLocationByString(splitInput[0]);
+			for (int i = 1; i < splitInput.length; i++)
 			{
-				if (i == 0)
-				{
-					location = getLocationByString(splitInput[0]);
-				}
-				else
-				{
-					ItemData itemData = Item.createItemDataByString(splitInput[i]);
-					itemDataList.add(itemData);
-				}
+				ItemData itemData = Item.createItemDataByString(splitInput[i]);
+				itemDataList.add(itemData);
 			}
 			//start print receipt after create item list
 			printReceipt(location, itemDataList);
@@ -74,8 +67,8 @@ public class ShoppingReceipt
 		}
 		//rounded up to the nearest 0.05
 		salesTax = Math.ceil(salesTax * 20) / 20.0;
-		System.out.printf("%-31s %15s %n", "Subtotal:", "$" + String.format("%.2f", subTotal));
-		System.out.printf("%-31s %15s %n", "Tax:", "$" + String.format("%.2f", salesTax));
-		System.out.printf("%-31s %15s %n", "Total:", "$" + String.format("%.2f", salesTax + subTotal));
+		System.out.printf("%-31s %15s %n", "subtotal:", "$" + String.format("%.2f", subTotal));
+		System.out.printf("%-31s %15s %n", "tax:", "$" + String.format("%.2f", salesTax));
+		System.out.printf("%-31s %15s %n", "total:", "$" + String.format("%.2f", salesTax + subTotal));
 	}
 }
